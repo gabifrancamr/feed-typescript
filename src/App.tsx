@@ -29,9 +29,9 @@ const posts: PostType[] = [
       role: "Educator @Rocketseat",
     },
     content: [ 
-      {type: 'paragraph', content:"Fala galera!" },
-      {type: 'paragraph', content:"Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorNow 🚀" },
-      {type: 'link', content:"lane.design/doctorNow" },
+      {type: 'paragraph', content:"Fala pessoal 👋" },
+      {type: 'paragraph', content:"Finalmente finalizei meu novo site/portfólio. Foi um baita desafio criar todo o design e codar na unha, mas consegui 💪🏻 " },
+      {type: 'link', content:"devonlane.design" },
     
     ],
     publishedAt: new Date('2023-11-10 20:00:00')
