@@ -24,14 +24,14 @@ export function Comment({content, onDeleteComment}: CommentProps) {
     <div className={styles.comment}>
       <Avatar 
         hasBorder={false} 
-        src="https://github.com/gabifrancamr.png" 
+        src="https://github.com/diego3g.png" 
         alt=""  />
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authorAndTime}>
-              <strong>Gabriela França</strong>
+              <strong>Diego Fernandes</strong>
 
               <time title="11 de maio às 08:13" dateTime="2022-05-11 08:13:20">
                 Cerca de 1h atrás
