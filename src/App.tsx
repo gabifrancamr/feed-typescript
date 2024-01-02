@@ -19,7 +19,8 @@ const posts: PostType[] = [
       {type: 'link', content:"jane.design/doctorcare" },
     
     ],
-    publishedAt: new Date('2023-11-14 20:00:00')
+    publishedAt: new Date('2023-11-14 20:00:00'),
+    comments: "Muito bom"
   },
   {
     id: 2,
@@ -34,8 +35,10 @@ const posts: PostType[] = [
       {type: 'link', content:"devonlane.design" },
     
     ],
-    publishedAt: new Date('2023-11-10 20:00:00')
+    publishedAt: new Date('2023-11-10 20:00:00'),
+    comments: "Top!"
   },
+  
 ];
 
 export function App() {
@@ -59,3 +62,4 @@ export function App() {
     </div>
   );
 }
+

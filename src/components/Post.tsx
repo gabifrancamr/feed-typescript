@@ -18,11 +18,13 @@ interface Content {
   content: string
 }
 
+
 export interface PostType {
   id: number;
   author: Author;
   publishedAt: Date;
-  content: Content[]
+  content: Content[],
+  comments: string
 }
 
 interface PostProps {
@@ -30,7 +32,7 @@ interface PostProps {
 }
 
 export function Post({ post }: PostProps) {
-  const [comments, setComments] = useState(["Post muito banaca, hein?"]);
+  const [allComments, setAllComments] = useState([post.comments]);
 
   const [newCommentText, setNewCommentText] = useState("");
 
@@ -49,7 +51,7 @@ export function Post({ post }: PostProps) {
 
   function handleCreateNewComment(ev: FormEvent) {
     ev.preventDefault();
-    setComments([...comments, newCommentText]);
+    setAllComments([...allComments, newCommentText]);
     setNewCommentText("");
   }
 
@@ -63,11 +65,11 @@ export function Post({ post }: PostProps) {
   }
 
   function deleteComment(commentToDelete: string) {
-    const commentsWithoutDeleteOne = comments.filter(comment  => {
+    const commentsWithoutDeleteOne = allComments.filter(comment  => {
       return comment !== commentToDelete
     })
 
-    setComments(commentsWithoutDeleteOne)
+    setAllComments(commentsWithoutDeleteOne)
 
   }
 
@@ -117,7 +119,7 @@ export function Post({ post }: PostProps) {
       </form>
 
       <div className={styles.commentList}>
-        {comments.map((comment) => {
+        {allComments.map((comment) => {
           return (
             <Comment 
               key={comment} 
