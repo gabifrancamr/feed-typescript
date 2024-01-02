@@ -9,9 +9,9 @@ const posts: PostType[] = [
   {
     id: 1,
     author: {
-      avatarUrl: "https://github.com/gabifrancamr.png",
-      name: "Gabriela França",
-      role: "Web Delevoper",
+      avatarUrl: "https://github.com/diego3g.png",
+      name: "Diego Fernandes",
+      role: "CTO @Rocketseat",
     },
     content: [ 
       {type: 'paragraph', content:"Fala galeraa 👋" },
@@ -26,7 +26,7 @@ const posts: PostType[] = [
     author: {
       avatarUrl: "https://github.com/maykbrito.png",
       name: "Mayk Brito",
-      role: "Educator @Rocketseat",
+      role: "Educador @Rocketseat",
     },
     content: [ 
       {type: 'paragraph', content:"Fala pessoal 👋" },
