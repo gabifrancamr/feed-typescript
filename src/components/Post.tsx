@@ -136,7 +136,7 @@ export function Post({ post }: PostProps) {
       <div className={styles.commentList}>
         <OtherComments
           key={post.comment.id}
-          comments={[post.comment.content]}
+          comment={post.comment.content}
           avatarUrl={post.comment.avatarUrl}
           name={post.comment.name}
         />

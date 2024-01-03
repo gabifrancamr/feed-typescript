@@ -4,12 +4,16 @@ import { ThumbsUp } from "phosphor-react";
 import { useState } from "react";
 
 interface OtherCommentsProps {
-  avatarUrl: string;  // Adicione esta linha
-  comments: string[];
-  name: string
+  avatarUrl: string; // Adicione esta linha
+  comment: string;
+  name: string;
 }
 
-export function OtherComments({ avatarUrl, comments, name }: OtherCommentsProps) {
+export function OtherComments({
+  avatarUrl,
+  comment,
+  name,
+}: OtherCommentsProps) {
   const [likeCount, setLikeCount] = useState(0);
 
   function handleLikeComment() {
@@ -20,28 +24,26 @@ export function OtherComments({ avatarUrl, comments, name }: OtherCommentsProps)
 
   return (
     <div>
-      {comments.map((comment, index) => (
-        <div key={index} className={styles.comment}>
-          <Avatar hasBorder={false} src={avatarUrl} />
-          <div className={styles.commentBox}>
-            <div className={styles.commentContent}>
-              <header>
-                <div className={styles.authorAndTime}>
-                  <strong>{name}</strong>
-                  <time>Cerca de 3h atrás</time>
-                </div>
-              </header>
-              <p>{comment}</p>
-            </div>
-            <footer>
-              <button onClick={handleLikeComment}>
-                <ThumbsUp />
-                Aplaudir <span>{likeCount}</span>
-              </button>
-            </footer>
+      <div className={styles.comment}>
+        <Avatar hasBorder={false} src={avatarUrl} />
+        <div className={styles.commentBox}>
+          <div className={styles.commentContent}>
+            <header>
+              <div className={styles.authorAndTime}>
+                <strong>{name}</strong>
+                <time>Cerca de 3h atrás</time>
+              </div>
+            </header>
+            <p>{comment}</p>
           </div>
+          <footer>
+            <button onClick={handleLikeComment}>
+              <ThumbsUp />
+              Aplaudir <span>{likeCount}</span>
+            </button>
+          </footer>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
