@@ -15,7 +15,7 @@ interface Author {
 }
 
 interface Content {
-  type: "paragraph" | "link";
+  type: "paragraph" | "link" | "hashtag";
   content: string;
 }
 
@@ -111,6 +111,12 @@ export function Post({ post }: PostProps) {
                 <a href="#">{line.content}</a>
               </p>
             );
+          } else if(line.type === 'hashtag') {
+            return (
+              <div className={styles.hashtag}>
+                <a href="#">{line.content}</a>
+              </div>
+            )
           }
         })}
       </div>

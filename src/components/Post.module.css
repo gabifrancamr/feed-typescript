@@ -15,7 +15,7 @@
 }
 
 .content p {
-    margin-top: 1rem;
+    margin: 2rem 0;
 }
 
 .content a {
@@ -31,6 +31,10 @@
 
 .content a:hover {
     color: var(--green-300);    
+}
+
+.hashtag {
+    display: inline;
 }
 
 .post > header {
