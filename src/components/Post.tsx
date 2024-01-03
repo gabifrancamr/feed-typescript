@@ -4,35 +4,43 @@ import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
+import { OtherComments } from "./OtherComments";
 
 //estado = variáveis que eu quero que o componente monitore
 
 interface Author {
-  name: string,
-  role: string,
-  avatarUrl: string
+  name: string;
+  role: string;
+  avatarUrl: string;
 }
 
 interface Content {
-  type: 'paragraph' | 'link';
-  content: string
+  type: "paragraph" | "link";
+  content: string;
 }
 
+interface CommentType {
+  id: number;
+  avatarUrl: string;
+  name: string;
+  publishedAt: Date;
+  content: string;
+}
 
 export interface PostType {
   id: number;
   author: Author;
   publishedAt: Date;
-  content: Content[],
-  comments: string
+  content: Content[];
+  comment: CommentType;
 }
 
 interface PostProps {
-  post: PostType
+  post: PostType;
 }
 
 export function Post({ post }: PostProps) {
-  const [allComments, setAllComments] = useState([post.comments]);
+  const [allComments, setAllComments] = useState<string[]>([]);
 
   const [newCommentText, setNewCommentText] = useState("");
 
@@ -56,24 +64,23 @@ export function Post({ post }: PostProps) {
   }
 
   function handleNewCommentChange(ev: ChangeEvent<HTMLTextAreaElement>) {
-    ev.target.setCustomValidity("")
+    ev.target.setCustomValidity("");
     setNewCommentText(ev.target.value);
   }
 
   function handleNewCommentInvalid(ev: InvalidEvent<HTMLTextAreaElement>) {
-    ev.target.setCustomValidity("Esse campo é obrigatório")
+    ev.target.setCustomValidity("Esse campo é obrigatório");
   }
 
   function deleteComment(commentToDelete: string) {
-    const commentsWithoutDeleteOne = allComments.filter(comment  => {
-      return comment !== commentToDelete
-    })
+    const commentsWithoutDeleteOne = allComments.filter((comment) => {
+      return comment !== commentToDelete;
+    });
 
-    setAllComments(commentsWithoutDeleteOne)
-
+    setAllComments(commentsWithoutDeleteOne);
   }
 
-  const isNewCommitEmpty = newCommentText.length === 0
+  const isNewCommitEmpty = newCommentText.length === 0;
 
   return (
     <article className={styles.post}>
@@ -86,7 +93,10 @@ export function Post({ post }: PostProps) {
           </div>
         </div>
 
-        <time title={publisheDateFormated} dateTime={post.publishedAt.toISOString()}>
+        <time
+          title={publisheDateFormated}
+          dateTime={post.publishedAt.toISOString()}
+        >
           {publishedDateRelativeToNow}
         </time>
       </header>
@@ -96,9 +106,12 @@ export function Post({ post }: PostProps) {
           if (line.type === "paragraph") {
             return <p key={line.content}>{line.content}</p>;
           } else if (line.type === "link") {
-              return <p key={line.content}><a href="#">{line.content}</a></p>
-            }
-          
+            return (
+              <p key={line.content}>
+                <a href="#">{line.content}</a>
+              </p>
+            );
+          }
         })}
       </div>
 
@@ -110,24 +123,34 @@ export function Post({ post }: PostProps) {
           onChange={handleNewCommentChange}
           placeholder="Deixe um comentário :)"
           onInvalid={handleNewCommentInvalid}
-          required 
+          required
         />
 
         <footer>
-          <button type="submit" disabled={isNewCommitEmpty}>Publicar</button>
+          <button type="submit" disabled={isNewCommitEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
 
       <div className={styles.commentList}>
+        <OtherComments
+          key={post.comment.id}
+          comments={[post.comment.content]}
+          avatarUrl={post.comment.avatarUrl}
+          name={post.comment.name}
+        />
+
         {allComments.map((comment) => {
           return (
-            <Comment 
-              key={comment} 
-              content={comment}
-              onDeleteComment={deleteComment}
-              
-            />
-          )
+            <>
+              <Comment
+                key={comment}
+                content={comment}
+                onDeleteComment={deleteComment}
+              />
+            </>
+          );
         })}
       </div>
     </article>

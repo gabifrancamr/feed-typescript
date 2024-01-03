@@ -20,7 +20,15 @@ const posts: PostType[] = [
     
     ],
     publishedAt: new Date('2023-11-14 20:00:00'),
-    comments: "Muito bom"
+    comment: 
+      {
+        id: 1,
+        avatarUrl: "https://github.com/maykbrito.png",
+         name: "Mayk Brito",
+         publishedAt: new Date(""),
+         content: "Muito legal"
+      }
+    
   },
   {
     id: 2,
@@ -36,7 +44,15 @@ const posts: PostType[] = [
     
     ],
     publishedAt: new Date('2023-11-10 20:00:00'),
-    comments: "Top!"
+    comment: 
+      {
+        id: 1,
+        avatarUrl: "https://github.com/diego3g.png",
+         name: "Diego Fernandes",
+         publishedAt: new Date(""),
+         content: "Gostei bastante"
+      }
+    
   },
   
 ];
@@ -62,4 +78,3 @@ export function App() {
     </div>
   );
 }
-

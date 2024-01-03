@@ -11,7 +11,7 @@ interface CommentProps {
 export function Comment({content, onDeleteComment}: CommentProps) {
   const [likeCount, setLikeCount] = useState(0)
 
-  function handleLikeComment() {
+   function handleLikeComment() {
     setLikeCount((state) => {
       return state + 1
     })
@@ -31,7 +31,7 @@ export function Comment({content, onDeleteComment}: CommentProps) {
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authorAndTime}>
-              <strong>Gabi França</strong>
+              <strong>Gabi França (você)</strong>
 
               <time title="11 de maio às 08:13" dateTime="2022-05-11 08:13:20">
                 Cerca de 1h atrás
