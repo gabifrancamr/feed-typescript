@@ -16,7 +16,7 @@ const posts: PostType[] = [
     content: [ 
       {type: 'paragraph', content:"Fala galeraa 👋" },
       {type: 'paragraph', content:"Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀" },
-      {type: 'link', content:"jane.design/doctorcare" },
+      {type: 'link', content:"diego.rocketseat/doctorcare" },
     
     ],
     publishedAt: new Date('2023-11-14 20:00:00'),
@@ -26,7 +26,7 @@ const posts: PostType[] = [
         avatarUrl: "https://github.com/maykbrito.png",
          name: "Mayk Brito",
          publishedAt: new Date(""),
-         content: "Muito legal"
+         content: "Muito legal :)"
       }
     
   },
@@ -40,7 +40,7 @@ const posts: PostType[] = [
     content: [ 
       {type: 'paragraph', content:"Fala pessoal 👋" },
       {type: 'paragraph', content:"Finalmente finalizei meu novo site/portfólio. Foi um baita desafio criar todo o design e codar na unha, mas consegui 💪🏻 " },
-      {type: 'link', content:"devonlane.design" },
+      {type: 'link', content:"mayk.rocketseat" },
     
     ],
     publishedAt: new Date('2023-11-10 20:00:00'),
@@ -50,7 +50,7 @@ const posts: PostType[] = [
         avatarUrl: "https://github.com/diego3g.png",
          name: "Diego Fernandes",
          publishedAt: new Date(""),
-         content: "Gostei bastante"
+         content: "Gostei bastante!"
       }
     
   },
