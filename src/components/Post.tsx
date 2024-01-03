@@ -20,7 +20,6 @@ interface Content {
 }
 
 interface CommentType {
-  id: number;
   avatarUrl: string;
   name: string;
   content: string;
@@ -110,12 +109,12 @@ export function Post({ post }: PostProps) {
                 <a href="#">{line.content}</a>
               </p>
             );
-          } else if(line.type === 'hashtag') {
+          } else if (line.type === "hashtag") {
             return (
               <div className={styles.hashtag}>
                 <a href="#">{line.content}</a>
               </div>
-            )
+            );
           }
         })}
       </div>
@@ -140,7 +139,6 @@ export function Post({ post }: PostProps) {
 
       <div className={styles.commentList}>
         <OtherComments
-          key={post.comment.id}
           comment={post.comment.content}
           avatarUrl={post.comment.avatarUrl}
           name={post.comment.name}
