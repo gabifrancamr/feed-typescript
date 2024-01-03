@@ -27,7 +27,6 @@ const posts: PostType[] = [
         id: 1,
         avatarUrl: "https://github.com/maykbrito.png",
          name: "Mayk Brito",
-         publishedAt: new Date(""),
          content: "Muito legal :)"
       }
     
@@ -53,7 +52,6 @@ const posts: PostType[] = [
         id: 1,
         avatarUrl: "https://github.com/diego3g.png",
          name: "Diego Fernandes",
-         publishedAt: new Date(""),
          content: "Gostei bastante!"
       }
     

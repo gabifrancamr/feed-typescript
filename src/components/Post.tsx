@@ -23,7 +23,6 @@ interface CommentType {
   id: number;
   avatarUrl: string;
   name: string;
-  publishedAt: Date;
   content: string;
 }
 

@@ -31,7 +31,7 @@ export function OtherComments({
             <header>
               <div className={styles.authorAndTime}>
                 <strong>{name}</strong>
-                <time>Cerca de 3h atrás</time>
+                <time>Cerca de 2h atrás</time>
               </div>
             </header>
             <p>{comment}</p>
