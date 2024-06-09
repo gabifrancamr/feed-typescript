@@ -38,7 +38,11 @@ interface PostProps {
 }
 
 export function Post({ post }: PostProps) {
-  const [allComments, setAllComments] = useState<string[]>([]);
+  const [allComments, setAllComments] = useState<string[]>(() => {
+    const storageKey = `comments_storage_${post.id}`;
+    const storageComments = localStorage.getItem(storageKey);
+    return storageComments ? JSON.parse(storageComments) : [];
+  });
 
   const [newCommentText, setNewCommentText] = useState("");
 
@@ -57,8 +61,22 @@ export function Post({ post }: PostProps) {
 
   function handleCreateNewComment(ev: FormEvent) {
     ev.preventDefault();
-    setAllComments([...allComments, newCommentText]);
+    setAllComments((state) => {
+      const updatedComments = [...state, newCommentText];
+      const storageKey = `comments_storage_${post.id}`;
+      localStorage.setItem(storageKey, JSON.stringify(updatedComments));
+      return updatedComments;
+    });
     setNewCommentText("");
+  }
+
+  function deleteComment(commentToDelete: string) {
+    setAllComments((state) => {
+      const updatedComments = state.filter((comment) => comment !== commentToDelete);
+      const storageKey = `comments_storage_${post.id}`;
+      localStorage.setItem(storageKey, JSON.stringify(updatedComments));
+      return updatedComments;
+    });
   }
 
   function handleNewCommentChange(ev: ChangeEvent<HTMLTextAreaElement>) {
@@ -70,15 +88,8 @@ export function Post({ post }: PostProps) {
     ev.target.setCustomValidity("Esse campo é obrigatório");
   }
 
-  function deleteComment(commentToDelete: string) {
-    const commentsWithoutDeleteOne = allComments.filter((comment) => {
-      return comment !== commentToDelete;
-    });
-
-    setAllComments(commentsWithoutDeleteOne);
-  }
-
   const isNewCommitEmpty = newCommentText.length === 0;
+
 
   return (
     <article className={styles.post}>
