@@ -24,19 +24,19 @@
     line-height: 1.6;
 }
 
-.sidebar footer {
-    border-top: 1px solid var(--gray-600);
-    margin-top: 1.5rem;
-    padding: 1.5rem 2rem 2rem;
-}
-
 .profile span {
     font-size: 0.875rem;
     color: var(--gray-400);
     line-height: 1.6;
 }
 
-.sidebar footer a  {
+.sidebar footer {
+    border-top: 1px solid var(--gray-600);
+    margin-top: 1.5rem;
+    padding: 1.5rem 2rem 2rem;
+}
+
+.sidebar footer span  {
     width: 100%;
     background-color: transparent;
     color: var(--green-500);
@@ -52,9 +52,10 @@
     justify-content: center;
     gap: 0.5rem;
     transition: color 0.1s, background-color 0.1s;
+    cursor: pointer;
 }
 
-.sidebar footer a:hover {
+.sidebar footer span:hover {
     background-color: var(--green-500);
     color: var(--white);
 }

@@ -4,6 +4,7 @@ import { Post, PostType } from "./components/Post";
 
 import "./global.css";
 import styles from "./App.module.css";
+import { ProfileProvider } from "./context/ProfileContext";
 
 const posts: PostType[] = [
   {
@@ -65,16 +66,18 @@ export function App() {
     <div>
       <Header />
 
-      <div className={styles.wrapper}>
-        <aside>
-          <Sidebar />
-        </aside>
-        <main>
-          {posts.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </main>
-      </div>
+      <ProfileProvider>
+        <div className={styles.wrapper}>
+          <aside>
+            <Sidebar />
+          </aside>
+          <main>
+            {posts.map((post) => (
+              <Post key={post.id} post={post} />
+            ))}
+          </main>
+        </div>
+      </ProfileProvider>
     </div>
   );
 }

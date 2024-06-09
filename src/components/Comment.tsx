@@ -1,57 +1,97 @@
 import { ThumbsUp, Trash } from "phosphor-react";
 import styles from "./Comment.module.css";
 import { Avatar } from "./Avatar";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ProfileContext } from "@/context/ProfileContext";
+import { formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+import { toast } from "sonner";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "./ui/dialog";
 
 interface CommentProps {
-  content: string,
-  onDeleteComment: (comment: string) => void
+  content: string;
+  onDeleteComment: (comment: string) => void;
 }
 
-export function Comment({content, onDeleteComment}: CommentProps) {
-  const [likeCount, setLikeCount] = useState(0)
+export function Comment({ content, onDeleteComment }: CommentProps) {
+  const [likeCount, setLikeCount] = useState(0);
 
-   function handleLikeComment() {
+  const { initialName } = useContext(ProfileContext);
+
+  function handleLikeComment() {
     setLikeCount((state) => {
-      return state + 1
-    })
+      return state + 1;
+    });
   }
 
   function handleDeleteComment() {
-    onDeleteComment(content)
+    onDeleteComment(content);
+    toast.success("Comentário apagado com sucesso!");
   }
   return (
     <div className={styles.comment}>
-      <Avatar 
-        hasBorder={false} 
-        src="https://github.com/gabifrancamr.png" 
-        alt=""  />
+      <Avatar
+        hasBorder={false}
+        src="https://github.com/gabifrancamr.png"
+        alt=""
+      />
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
           <header>
             <div className={styles.authorAndTime}>
-              <strong>Gabi França (você)</strong>
+              <strong>{initialName} (você)</strong>
 
-              <time title="11 de maio às 08:13" dateTime="2022-05-11 08:13:20">
-                Cerca de 1h atrás
-              </time>
+              <span className="text-sm font-medium text-slate-300">
+                {formatDistanceToNow(new Date(), {
+                  locale: ptBR,
+                  addSuffix: true,
+                })}
+              </span>
             </div>
-            <button onClick={handleDeleteComment} title="Deletar comentário">
-                <Trash size={24}/>
-            </button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button title="Deletar comentário">
+                  <Trash size={24} />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="bg-neutral-800 text-slate-200 border-transparent !rounded-[8px]">
+                <DialogHeader>
+                  <DialogTitle>Deseja apagar comentário?</DialogTitle>
+                </DialogHeader>
+                <div className="mt-4 flex justify-center gap-5">
+                  <button
+                    className="p-2 bg-red-600 rounded-[8px] min-w-[100px]"
+                    onClick={handleDeleteComment}
+                  >
+                    Apagar
+                  </button>
+                  <DialogClose asChild>
+                    <button className="p-2 bg-emerald-600 rounded-[8px] min-w-[100px]">
+                      Cancelar
+                    </button>
+                  </DialogClose>
+                </div>
+              </DialogContent>
+            </Dialog>
           </header>
           <p>{content}</p>
         </div>
         <footer>
-        <button onClick={handleLikeComment}>
+          <button onClick={handleLikeComment}>
             <ThumbsUp />
             Aplaudir <span>{likeCount}</span>
-        </button>
-      </footer>
+          </button>
+        </footer>
       </div>
-
-      
     </div>
   );
 }
