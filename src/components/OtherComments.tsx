@@ -1,7 +1,7 @@
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 import { ThumbsUp } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface OtherCommentsProps {
   avatarUrl: string; // Adicione esta linha
@@ -14,12 +14,17 @@ export function OtherComments({
   comment,
   name,
 }: OtherCommentsProps) {
-  const [likeCount, setLikeCount] = useState(0);
+  const [likeCount, setLikeCount] = useState(() => {
+    const savedLikeCount = localStorage.getItem('like_count');
+    return savedLikeCount ? parseInt(savedLikeCount) : 0;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('like_count', likeCount.toString());
+  }, [likeCount]);
 
   function handleLikeComment() {
-    setLikeCount((state) => {
-      return state + 1;
-    });
+    setLikeCount((state) => state + 1);
   }
 
   return (
